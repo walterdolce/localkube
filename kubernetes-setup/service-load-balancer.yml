@@ -1,0 +1,13 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-app-service-load-balancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: MyApp
+  ports:
+  - protocol: TCP
+    port: 8484
+    targetPort: 3000

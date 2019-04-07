@@ -1,1 +1,0 @@
-kubeadm join 192.168.50.10:6443 --token ac9loj.rfl82143opcqatfx --discovery-token-ca-cert-hash sha256:6ca3acdf54e9c4824bd34a6be982ab9e6bb7f7a6523daf0fa08787baecd49048

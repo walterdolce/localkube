@@ -78,6 +78,15 @@
         - kubeadm 
         - kubectl
 
+  - name: Install additional system packages
+    apt:
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+        - jq
+
   - name: Initialize the Kubernetes cluster using kubeadm
     command: kubeadm init --apiserver-advertise-address="192.168.50.10" --apiserver-cert-extra-sans="192.168.50.10"  --node-name k8s-master --pod-network-cidr=192.168.0.0/16
 
@@ -101,6 +110,14 @@
       module: copy
       content: "{{ join_command.stdout_lines[0] }}"
       dest: "./join-command"
+    become: false
+
+  - name: Copy example files
+    copy:
+      src: "{{ item }}"
+      dest: "{{ item }}"
+    with_items:
+      - "./two-containers.yml"
     become: false
 
   handlers:

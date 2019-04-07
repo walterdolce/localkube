@@ -1,0 +1,33 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: MyApp
+  ports:
+  - protocol: TCP
+    port: 8282
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+  labels:
+    app: MyAppDeployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: MyApp
+  template:
+    metadata:
+      name: my-app
+      labels:
+        app: MyApp
+    spec:
+      containers:
+        - name: sample-app
+          image: bitnami/node-example:0.0.1
