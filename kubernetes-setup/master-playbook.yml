@@ -117,6 +117,12 @@
       src: "{{ item }}"
       dest: "{{ item }}"
     with_items:
+      - "./busybox.yml"
+      - "./network-policy-allow-busybox.yml"
+      - "./network-policy-deny-all.yml"
+      - "./service.yml"
+      - "./service-load-balancer.yml"
+      - "./service-node-port.yml"
       - "./two-containers.yml"
     become: false
 
